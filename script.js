@@ -1,4 +1,4 @@
-// Winter Ark Comeback - Main JavaScript File
+// Winter Ark Comeback - CORRECTED JavaScript File
 
 class WinterArkApp {
     constructor() {
@@ -268,7 +268,7 @@ class WinterArkApp {
         quoteContainer.classList.add('hidden');
     }
 
-    // Calendar Functions
+    // CORRECTED Calendar Functions
     initializeCalendar() {
         this.renderCalendar();
     }
@@ -308,7 +308,7 @@ class WinterArkApp {
 
         // Empty cells for days before month starts
         for (let i = 0; i < startingDayOfWeek; i++) {
-            daysHTML += '<div class="p-2"></div>';
+            daysHTML += '<div class="p-3 text-center"></div>';
         }
 
         // Days of the month
@@ -320,8 +320,8 @@ class WinterArkApp {
             const isToday = currentDate.toDateString() === today.toDateString();
             const isPast = currentDate < today;
 
-            let cellClass = 'p-2 rounded-lg relative transition-all duration-200 hover:bg-white/10';
-            let cellContent = day;
+            let cellClass = 'p-3 text-center rounded-lg relative transition-all duration-200 hover:bg-white/10 min-h-[40px] flex flex-col justify-center';
+            let cellContent = `<div class="text-sm">${day}</div>`;
 
             if (isToday) {
                 cellClass += ' bg-white/20 ring-2 ring-white/40 font-semibold';
@@ -334,10 +334,10 @@ class WinterArkApp {
                 const data = JSON.parse(progressData);
                 if (data.completionRate === 100) {
                     cellClass += ' bg-success-green/30 border border-success-green/50';
-                    cellContent += '<div class="absolute top-1 right-1 text-xs">✓</div>';
+                    cellContent += '<div class="absolute -top-1 -right-1 text-xs text-success-green">✓</div>';
                 } else if (data.total > 0) {
                     cellClass += ' bg-warning-amber/30 border border-warning-amber/50';
-                    cellContent += `<div class="absolute top-1 right-1 text-xs">${Math.round(data.completionRate)}%</div>`;
+                    cellContent += `<div class="absolute -top-1 -right-1 text-xs text-warning-amber">${Math.round(data.completionRate)}%</div>`;
                 }
             }
 

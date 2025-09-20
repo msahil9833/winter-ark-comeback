@@ -123,7 +123,7 @@
             </div>
         </section>
 
-        <!-- Calendar Section -->
+        <!-- CORRECTED Calendar Section -->
         <section class="mb-8">
             <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-6 md:p-8 shadow-2xl border border-white/20">
                 <h2 class="text-2xl md:text-3xl font-semibold mb-6 text-center">Progress Calendar</h2>
@@ -143,19 +143,22 @@
                     </button>
                 </div>
 
-                <!-- Calendar Grid -->
+                <!-- CORRECTED Calendar Grid - All in one container -->
                 <div class="grid grid-cols-7 gap-1 text-center text-sm">
                     <!-- Days of week headers -->
-                    <div class="p-2 font-semibold opacity-70">Sun</div>
-                    <div class="p-2 font-semibold opacity-70">Mon</div>
-                    <div class="p-2 font-semibold opacity-70">Tue</div>
-                    <div class="p-2 font-semibold opacity-70">Wed</div>
-                    <div class="p-2 font-semibold opacity-70">Thu</div>
-                    <div class="p-2 font-semibold opacity-70">Fri</div>
-                    <div class="p-2 font-semibold opacity-70">Sat</div>
+                    <div class="p-3 font-semibold opacity-70 bg-white/5 rounded-lg">Sun</div>
+                    <div class="p-3 font-semibold opacity-70 bg-white/5 rounded-lg">Mon</div>
+                    <div class="p-3 font-semibold opacity-70 bg-white/5 rounded-lg">Tue</div>
+                    <div class="p-3 font-semibold opacity-70 bg-white/5 rounded-lg">Wed</div>
+                    <div class="p-3 font-semibold opacity-70 bg-white/5 rounded-lg">Thu</div>
+                    <div class="p-3 font-semibold opacity-70 bg-white/5 rounded-lg">Fri</div>
+                    <div class="p-3 font-semibold opacity-70 bg-white/5 rounded-lg">Sat</div>
 
-                    <!-- Calendar days will be dynamically generated here -->
-                    <div id="calendar-days"></div>
+                    <!-- Calendar days will be dynamically generated here by JavaScript -->
+                </div>
+                <!-- Remove the separate calendar-days div -->
+                <div id="calendar-days" class="contents">
+                    <!-- Days will be inserted here by JavaScript -->
                 </div>
             </div>
         </section>
