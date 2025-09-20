@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Winter Ark Comeback</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'winter-blue': '#1e3a8a',
+                        'winter-ice': '#e0f2fe',
+                        'success-green': '#10b981',
+                        'warning-amber': '#f59e0b',
+                        'danger-red': '#ef4444'
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'bounce-subtle': 'bounce 2s infinite',
+                        'fade-in': 'fadeIn 0.6s ease-in-out'
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-winter-blue to-blue-900 min-h-screen text-white">
+    <!-- Header -->
+    <header class="container mx-auto px-4 py-6">
+        <div class="text-center animate-fade-in">
+            <h1 class="text-4xl md:text-6xl font-bold mb-2 bg-gradient-to-r from-white to-winter-ice bg-clip-text text-transparent">
+                Winter Ark Comeback
+            </h1>
+            <p class="text-winter-ice text-lg md:text-xl opacity-90">Your Journey to End 2025 Strong</p>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="container mx-auto px-4 pb-8">
+        <!-- Countdown Section -->
+        <section class="mb-8">
+            <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-6 md:p-8 shadow-2xl border border-white/20">
+                <h2 class="text-2xl md:text-3xl font-semibold mb-6 text-center">Countdown to 2026</h2>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                    <div class="bg-white/20 rounded-xl p-4 animate-pulse-slow">
+                        <div class="text-3xl md:text-4xl font-bold" id="days">0</div>
+                        <div class="text-sm uppercase tracking-wide opacity-80">Days</div>
+                    </div>
+                    <div class="bg-white/20 rounded-xl p-4 animate-pulse-slow">
+                        <div class="text-3xl md:text-4xl font-bold" id="hours">0</div>
+                        <div class="text-sm uppercase tracking-wide opacity-80">Hours</div>
+                    </div>
+                    <div class="bg-white/20 rounded-xl p-4 animate-pulse-slow">
+                        <div class="text-3xl md:text-4xl font-bold" id="minutes">0</div>
+                        <div class="text-sm uppercase tracking-wide opacity-80">Minutes</div>
+                    </div>
+                    <div class="bg-white/20 rounded-xl p-4 animate-pulse-slow">
+                        <div class="text-3xl md:text-4xl font-bold" id="seconds">0</div>
+                        <div class="text-sm uppercase tracking-wide opacity-80">Seconds</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Task Tracker Section -->
+        <section class="mb-8">
+            <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-6 md:p-8 shadow-2xl border border-white/20">
+                <h2 class="text-2xl md:text-3xl font-semibold mb-6 text-center">Daily Tasks</h2>
+
+                <!-- Current Date -->
+                <div class="text-center mb-4">
+                    <span class="bg-white/20 px-4 py-2 rounded-full text-sm font-medium" id="current-date"></span>
+                </div>
+
+                <!-- Progress Bar -->
+                <div class="mb-6">
+                    <div class="flex justify-between text-sm mb-2">
+                        <span>Progress</span>
+                        <span id="progress-text">0%</span>
+                    </div>
+                    <div class="bg-white/20 rounded-full h-3 overflow-hidden">
+                        <div class="h-full bg-gradient-to-r from-success-green to-green-400 transition-all duration-500 ease-out" id="progress-bar" style="width: 0%"></div>
+                    </div>
+                </div>
+
+                <!-- Add Task Input -->
+                <div class="flex gap-2 mb-6">
+                    <input 
+                        type="text" 
+                        id="task-input" 
+                        placeholder="Add a task for today..."
+                        class="flex-1 px-4 py-3 bg-white/20 border border-white/30 rounded-xl text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-white/40 focus:border-transparent transition-all duration-200"
+                    >
+                    <button 
+                        id="add-task-btn"
+                        class="px-6 py-3 bg-success-green hover:bg-green-600 rounded-xl font-medium transition-all duration-200 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-green-400"
+                    >
+                        Add
+                    </button>
+                </div>
+
+                <!-- Tasks List -->
+                <div id="tasks-container" class="space-y-2 mb-6">
+                    <!-- Tasks will be dynamically added here -->
+                </div>
+
+                <!-- Motivational Quote -->
+                <div id="quote-container" class="text-center p-4 bg-white/10 rounded-xl hidden">
+                    <p class="italic text-winter-ice" id="motivational-quote"></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Calendar Section -->
+        <section class="mb-8">
+            <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-6 md:p-8 shadow-2xl border border-white/20">
+                <h2 class="text-2xl md:text-3xl font-semibold mb-6 text-center">Progress Calendar</h2>
+
+                <!-- Calendar Navigation -->
+                <div class="flex items-center justify-between mb-4">
+                    <button id="prev-month" class="p-2 hover:bg-white/20 rounded-lg transition-colors">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                        </svg>
+                    </button>
+                    <h3 id="calendar-month-year" class="text-xl font-semibold"></h3>
+                    <button id="next-month" class="p-2 hover:bg-white/20 rounded-lg transition-colors">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Calendar Grid -->
+                <div class="grid grid-cols-7 gap-1 text-center text-sm">
+                    <!-- Days of week headers -->
+                    <div class="p-2 font-semibold opacity-70">Sun</div>
+                    <div class="p-2 font-semibold opacity-70">Mon</div>
+                    <div class="p-2 font-semibold opacity-70">Tue</div>
+                    <div class="p-2 font-semibold opacity-70">Wed</div>
+                    <div class="p-2 font-semibold opacity-70">Thu</div>
+                    <div class="p-2 font-semibold opacity-70">Fri</div>
+                    <div class="p-2 font-semibold opacity-70">Sat</div>
+
+                    <!-- Calendar days will be dynamically generated here -->
+                    <div id="calendar-days"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
